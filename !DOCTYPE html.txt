@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Төрсөн өдрийн мэнд хүргэе! ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .card {
+            background: #ffffff;
+            color: #333;
+            width: 100%;
+            max-width: 440px;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .gif-img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #00bcd4;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+        }
+        h1 {
+            font-size: 22px;
+            color: #0f3460;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .step {
+            display: none;
+        }
+        .step.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f4f6f9;
+            border-radius: 16px;
+            text-align: left;
+        }
+        input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #dcdde1;
+            background: #fff;
+            font-size: 15px;
+            margin-top: 8px;
+            outline: none;
+            color: #333;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .mystery-card {
+            background: #0f3460;
+            color: white;
+            height: 75px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+            padding: 5px;
+            user-select: none;
+        }
+        .mystery-card:hover {
+            background: #16213e;
+            transform: scale(1.03);
+        }
+        .mystery-card.revealed {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 2px dashed #81c784;
+            font-size: 12px;
+        }
+        .btn {
+            background: #0f3460;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(15, 52, 96, 0.3);
+        }
+        .btn:hover {
+            background: #16213e;
+        }
+        .btn:active {
+            transform: scale(0.98);
+        }
+        .pass-card {
+            background: linear-gradient(135deg, #0f3460, #16213e);
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .pass-card h3 {
+            color: #00bcd4;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .pass-card p {
+            color: #ddd;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="step active" id="step-1">
+            <img src="https://media.giphy.com/media/3ov9jLsBqPh6rjiHuM/giphy.gif" alt="Rick GIF" class="gif-img">
+            <h1>Төрсөн өдрийн мэнд хүргэе! ✨</h1>
+            <p>Өнөөдөр бол ёстой л юу ч тохиолдож магадгүй тэр өдөр шүү! Wubba Lubba Dub Dub! 🎉 Бажааж, хамтдаа гоё өнгөрөөх үү?</p>
+            <button class="btn" onclick="nextStep(2)">Тийм ээ, эхэлье! 🚀</button>
+        </div>
+
+        <div class="step" id="step-2">
+            <img src="https://media.giphy.com/media/l4FGGafcOHmrlQxG0/giphy.gif" alt="Rick GIF" class="gif-img">
+            <h1>Яг хэзээ тэмдэглэх вэ? 🗓️</h1>
+            <p>Төрсөн өдөр болохоор цаг товлоход хязгаар байхгүй ээ. Календараас өдрөө сонгоорой:</p>
+            <div class="section">
+                <label style="font-size: 13px; font-weight: 600; color: #333;">Өдрөө сонгоно уу:</label>
+                <input type="date" id="selected-date">
+            </div>
+            <button class="btn" onclick="validateDate()">Дараагийнх ➡️</button>
+        </div>
+
+        <div class="step" id="step-3">
+            <h1>Mystery Cards 🔮</h1>
+            <p>Доорх 9 картаас яг **3-ыг** сонгож нээгээрэй:</p>
+            <p style="font-size: 12px; color: #0f3460; font-weight: bold; margin-bottom: 10px;">Үлдсэн сонголт: <span id="picks-left">3</span></p>
+            <div class="grid-container" id="cards-grid"></div>
+            <button class="btn" id="to-final-btn" style="display: none;" onclick="nextStep(4)">Бүгд бэлэн боллоо! 😎</button>
+        </div>
+
+        <div class="step" id="step-4">
+            <img src="https://media.giphy.com/media/3ov9jLsBqPh6rjiHuM/giphy.gif" alt="Rick GIF" class="gif-img">
+            <h1>Бүх зүйл бэлэн боллоо! 🎉</h1>
+            <p>Миний бэлдсэн VIP пасспорт амжилттай үүслээ:</p>
+            <div class="pass-card">
+                <h3>🎫 VIP B-DAY PASS</h3>
+                <p><b>🗓️ Төлөвлөсөн өдөр:</b> <span id="final-date-text">-</span></p>
+                <p><b>✨ Сонгосон зүйлс:</b></p>
+                <ul id="final-choices-list" style="padding-left: 20px; font-size: 13px; color: #fff;"></ul>
+            </div>
+            <button class="btn" onclick="finishInvite()" style="background: #ff7043;">💌 Илгээгээд баяр тэмдэглэе!</button>
+        </div>
+
+        <div class="step" id="step-5">
+            <img src="https://media.giphy.com/media/lszAB3TzFtRaU/giphy.gif" alt="Rick GIF" class="gif-img">
+            <h1>Баярлалаа! ✨</h1>
+            <p>Амжилттай илгээгдлээ. Төрсөн өдрийн эзэнд энэ сюрприз яг таарна гэдэгт итгэлтэй байна! Wubba Lubba Dub Dub! 😎🔥</p>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        let selectedDate = "";
+        let picksLeft = 3;
+        let chosenCards = [];
+
+        const cardOptions = [
+            "🍰 Гоё газар амттай бялуу идэх",
+            "☕ Тухтай кафе орж кофе уух",
+            "📸 Хамтдаа гоё зураг татуулах",
+            "🎬 Гоё кино үзэх vibe-тай байх",
+            "🍜 Амттай хоол зооглох",
+            "🎁 Бэлгээ задлах мөч",
+            "🌙 Орой хотын өнгө үзэх",
+            "🎶 Хөгжим сонсон алхах",
+            "✨ Чиллэх гоё газар олох"
+        ];
+
+        function nextStep(step) {
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            currentStep = step;
+            document.getElementById(`step-${currentStep}`).classList.add('active');
+            if (currentStep === 3) { initMysteryCards(); }
+        }
+
+        function validateDate() {
+            const dateInput = document.getElementById('selected-date').value;
+            if (!dateInput) {
+                alert("Эхлээд төрсөн өдрийн өдрөө сонгоно уу!");
+                return;
+            }
+            selectedDate = dateInput;
+            document.getElementById('final-date-text').innerText = selectedDate;
+            nextStep(3);
+        }
+
+        function initMysteryCards() {
+            const grid = document.getElementById('cards-grid');
+            grid.innerHTML = "";
+            cardOptions.forEach((text, index) => {
+                const card = document.createElement('div');
+                card.className = 'mystery-card';
+                card.innerText = `Card #${index + 1}`;
+                card.onclick = () => revealCard(card, text);
+                grid.appendChild(card);
+            });
+        }
+
+        function revealCard(element, text) {
+            if (element.classList.contains('revealed') || picksLeft <= 0) return;
+            element.classList.add('revealed');
+            element.innerText = text;
+            chosenCards.push(text);
+            picksLeft--;
+            document.getElementById('picks-left').innerText = picksLeft;
+            if (picksLeft === 0) {
+                document.querySelectorAll('.mystery-card:not(.revealed)').forEach(c => {
+                    c.style.opacity = '0.4';
+                    c.style.pointerEvents = 'none';
+                });
+                document.getElementById('to-final-btn').style.display = 'block';
+                const list = document.getElementById('final-choices-list');
+                list.innerHTML = "";
+                chosenCards.forEach(item => {
+                    let li = document.createElement('li');
+                    li.innerText = item;
+                    list.appendChild(li);
+                });
+            }
+        }
+
+        function finishInvite() {
+            nextStep(5);
+        }
+    </script>
+</body>
+</html>
